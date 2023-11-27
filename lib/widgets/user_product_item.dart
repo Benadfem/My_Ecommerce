@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../screens/form_screen.dart';
+
 class UserProductItem extends StatelessWidget {
-  const UserProductItem(
-      {super.key, required this.title, required this.imageUrl});
+  const UserProductItem(this.id, this.title, this.imageUrl, {super.key});
 
   final String title;
   final String imageUrl;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,22 @@ class UserProductItem extends StatelessWidget {
         trailing: SizedBox(
           width: 100,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.edit),
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed(FormScreen.routeName, arguments: id);
+                },
+                icon: Icon(
+                  Icons.edit,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.delete),
+                icon: Icon(Icons.delete,
+                    color: Theme.of(context).colorScheme.error),
               ),
             ],
           ),

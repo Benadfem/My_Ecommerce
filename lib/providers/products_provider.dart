@@ -1,8 +1,30 @@
 // ignore_for_file: unused_element, unused_field
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'product.dart';
+class ProductProvider with ChangeNotifier {
+  final String id;
+  final String title;
+  final String description;
+  final double price;
+  final String imageUrl;
+  bool isfavorite;
+
+  ProductProvider({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.imageUrl,
+    this.isfavorite = false,
+  });
+
+  void toggleFavoriteStatus() {
+    isfavorite = !isfavorite;
+    notifyListeners();
+  }
+}
 
 class ProductsProvivder with ChangeNotifier {
   final List<ProductProvider> _items = [
@@ -62,5 +84,29 @@ class ProductsProvivder with ChangeNotifier {
 
   ProductProvider findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
+  }
+
+  void addProduct(ProductProvider product) {
+    var newProduct = ProductProvider(
+        id: DateTime.now().toString(),
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl);
+
+    _items.add(newProduct);
+    notifyListeners();
+  }
+
+  void updateProduct(String id, ProductProvider newProduct) {
+    final prodIndex = _items.indexWhere((prod) => prod.id == id);
+    if (prodIndex >= 0) {
+      _items[prodIndex] = newProduct;
+    } else {
+      if (kDebugMode) {
+        print('...');
+      }
+    }
+    notifyListeners();
   }
 }
