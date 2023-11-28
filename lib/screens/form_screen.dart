@@ -18,7 +18,6 @@ class _FormScreenState extends State<FormScreen> {
   final _imageUrlFocusNode = FocusNode();
   final _imageUrlController = TextEditingController();
   final _form = GlobalKey<FormState>();
-
   var _editedProduct = ProductProvider(
     id: '',
     title: '',
@@ -26,6 +25,7 @@ class _FormScreenState extends State<FormScreen> {
     price: 0.00,
     imageUrl: '',
   );
+
   var _initvalues = {
     'title': '',
     'description': '',

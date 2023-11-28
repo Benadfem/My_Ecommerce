@@ -1,7 +1,6 @@
 // ignore_for_file: unused_element, unused_field
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 class ProductProvider with ChangeNotifier {
   final String id;
@@ -87,7 +86,7 @@ class ProductsProvivder with ChangeNotifier {
   }
 
   void addProduct(ProductProvider product) {
-    var newProduct = ProductProvider(
+    final newProduct = ProductProvider(
         id: DateTime.now().toString(),
         title: product.title,
         description: product.description,
@@ -107,6 +106,11 @@ class ProductsProvivder with ChangeNotifier {
         print('...');
       }
     }
+    notifyListeners();
+  }
+
+  void deleteProduct(String id) {
+    _items.removeWhere((prod) => prod.id == id);
     notifyListeners();
   }
 }
