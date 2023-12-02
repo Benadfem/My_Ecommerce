@@ -5,11 +5,11 @@ import '../providers/products_provider.dart';
 import '../screens/form_screen.dart';
 
 class UserProductItem extends StatelessWidget {
-  const UserProductItem(this.id, this.title, this.imageUrl, {super.key});
-
+  final String id;
   final String title;
   final String imageUrl;
-  final String id;
+
+  const UserProductItem(this.id, this.title, this.imageUrl, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class UserProductItem extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  Provider.of<ProductsProvivder>(context, listen: false)
+                  Provider.of<ProductsProvider>(context, listen: false)
                       .deleteProduct(id);
                 },
                 icon: Icon(Icons.delete,

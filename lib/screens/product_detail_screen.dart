@@ -13,7 +13,7 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)?.settings.arguments as String;
-    final loadedProduct = Provider.of<ProductsProvivder>(context, listen: false)
+    final loadedProduct = Provider.of<ProductsProvider>(context, listen: false)
         .findById(productId);
     final cart = Provider.of<Cart>(context);
     return Scaffold(
@@ -59,14 +59,12 @@ class ProductDetailScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                child: Text(
-                  '${loadedProduct.price}',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.grey),
-                ),
+              Text(
+                '${loadedProduct.price}',
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.grey),
               ),
               const SizedBox(
                 height: 5,

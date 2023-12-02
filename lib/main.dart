@@ -21,7 +21,7 @@ class MyShop extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (ctx) => ProductsProvivder(),
+          create: (ctx) => ProductsProvider(),
         ),
         ChangeNotifierProvider(
           create: (ctx) => Cart(),

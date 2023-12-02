@@ -11,7 +11,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var product = Provider.of<ProductProvider>(context, listen: false);
+    var product = Provider.of<ProductModelProvider>(context, listen: false);
     final cart = Provider.of<Cart>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
@@ -33,7 +33,7 @@ class ProductItem extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          leading: Consumer<ProductProvider>(
+          leading: Consumer<ProductModelProvider>(
               builder: (ctx, product, _) => IconButton(
                     onPressed: () {
                       product.toggleFavoriteStatus();
